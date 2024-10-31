@@ -49,7 +49,8 @@ def train_lightning(config: Config):
     )
 
     trainer = pl.Trainer(
-        gpus=config.train.gpus,
+        accelerator="gpu",  # or "cpu" if you're not using a GPU
+        devices=1,
         callbacks=[early_stop_callback],
         max_epochs=config.train.max_epochs
     )

@@ -89,6 +89,8 @@ def get_map_by_name(name):
         return get_map(os.path.join(os.path.dirname(__file__), "map/building2.png"))
     elif name == 'building2_f2':
         return get_map(os.path.join(os.path.dirname(__file__), "map/building2_f2_test.png"))
+    elif name == 'map_1_png':
+        return get_map(os.path.join(os.path.dirname(__file__), "map/map_1_png.png"))
     elif name == 'building1':
         # "building1_w_tables_smaller_smaller_tables.png"))#
         return get_map(os.path.join(os.path.dirname(__file__), "map/building1_map_more_tables.png"))
@@ -130,6 +132,7 @@ _map_sizes = {
     "building2_f1":   get_map_by_name("building2_f1").shape,
     "building2_f2":   get_map_by_name("building2_f2").shape,
     "building1": get_map_by_name("building1").shape,
+    "map_1_png": get_map_by_name("map_1_png").shape,
 }
 
 _world_sizes = {
@@ -137,6 +140,7 @@ _world_sizes = {
     "building2_f1":   (69., 51),
     "building2_f2":   (67., 54.),
     "building1": (54, 18),
+    "map_1_png": (10, 10),
 }
 
 _origins = {  # world frame
@@ -144,6 +148,7 @@ _origins = {  # world frame
     "building2_f1":   (26.5,   34.5),
     "building2_f2":   (30.5,   29.),
     "building1": (14.023, 5.2),
+    "map_1_png": (0, 0),
 }
 
 
@@ -164,6 +169,10 @@ def _coord_transform(world_coords_orig, map_name):
         world_coords_new = world_coords_orig.copy()
         world_coords_new[:, 0] = world_coords_orig[:, 1]
         world_coords_new[:, 1] = world_coords_orig[:, 0]
+    elif map_name == "map_1_png":
+        world_coords_new = world_coords_orig.copy()
+        world_coords_new[:, 0] = world_coords_orig[:, 1]
+        world_coords_new[:, 1] = world_coords_orig[:, 0]
     return world_coords_new
 
 
@@ -181,6 +190,10 @@ def _inv_coord_transform(image_coords_orig, map_name):
         image_coords_new[:, 0] = image_coords_orig[:, 1]
         image_coords_new[:, 1] = image_coords_orig[:, 0]
     elif map_name == "building2_f2":
+        image_coords_new = image_coords_orig.copy()
+        image_coords_new[:, 0] = image_coords_orig[:, 1]
+        image_coords_new[:, 1] = image_coords_orig[:, 0]
+    elif map_name == "map_1_png":
         image_coords_new = image_coords_orig.copy()
         image_coords_new[:, 0] = image_coords_orig[:, 1]
         image_coords_new[:, 1] = image_coords_orig[:, 0]
