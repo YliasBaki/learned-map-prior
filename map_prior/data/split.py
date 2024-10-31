@@ -8,7 +8,7 @@ Dataset = dict[Building, dict[Mode, list[Path]]]
 
 def split(dir: Path) -> Dataset:
     files: Dataset = dict()
-    for file in sorted(dir.glob("*building*/**/*.npy")):
+    for file in sorted(dir.glob("**/*.npy")):  # Remove the "building" restriction
         building: Building = file.parents[1].name
         split = Split(file.parents[0].name)
         if building not in files:
